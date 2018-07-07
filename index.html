@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="frontend" content="Jinlian">
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="stylesheet" type="text/css" href="static/sanshengsanshi/css/style1.css">
+	<script type="text/javascript" src="static/sanshengsanshi/js/zepto.min.js"></script>
+	<script type="text/javascript" src="static/sanshengsanshi/js/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="static/sanshengsanshi/js/adaptive.js"></script>
+	<script type="text/javascript">
+		window['adaptive'].desinWidth = 640;
+		window['adaptive'].baseFont = 18;
+		window['adaptive'].maxWidth = 640;
+		window['adaptive'].scaleType = 3;
+		window['adaptive'].init();
+
+		// google访问量统计
+		!function (f, b, e, v, n, t, s) {
+			if (f.fbq) return; n = f.fbq = function () {
+				n.callMethod ?
+				n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+			};
+			if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+			n.queue = []; t = b.createElement(e); t.async = !0;
+			t.src = v; s = b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t, s)
+		}(window, document, 'script','https://connect.facebook.net/en_US/fbevents.js');
+
+		fbq('init', '1029912480496590');
+		fbq('track', 'PageView');
+	</script>
+	<noscript>
+		<img height="1" width="1" src="https://www.facebook.com/tr?id=1029912480496590&ev=PageView&noscript=1" />
+	</noscript>
+	<style>
+		[v-load] {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper" id="app" v-load>
+		<header>
+			<a href="index.html" class="logo"></a>
+			<div class="ginfo">
+				<h2>{{game.Name}}
+					<i>手游</i>
+				</h2>
+				<p>{{game.Description}}</p>
+			</div>
+			<a :href="game.DownPath" @click="Down()" class="btns down_url">立即下载</a>
+		</header>
+		<router-view :game="game" :noticelist="noticelist" :activitylist="activitylist" :suit="suit" :openserver="openserver" :strategy="strategy"
+		 :noticelist7="noticelist7" :activitylist7="activitylist7" :suit7="suit7" :openserver7="openserver7" :strategy7="strategy7"
+		 :handleinfolist="handleinfolist" :maingift="maingift" :othergiftlist="othergiftlist" :openservicelist="openservicelist"
+		 :recentos="recentos" v-on:childMethod="Down" @my-index="index" :nav="nav">
+		</router-view>
+		<footer>
+			<!--<a href="#" class="back_top totop"></a>-->
+			<p>©2013-2019 成都初心互动科技有限公司版权所有</p>
+		</footer>
+		<div class="levi_nav">
+			<a href="#/" class="b1" @click="index(0)">
+				<img src="static/sanshengsanshi/image/index.png" />
+				<img v-show="nav == 0" src="static/sanshengsanshi/image/index-h.png" />
+			</a>
+			<a href="#/notice" class="b2" @click="index(1)">
+				<img src="static/sanshengsanshi/image/notic.png" />
+				<img v-show="nav == 1" src="static/sanshengsanshi/image/notic-h.png" />
+			</a>
+			<a href="#/gift" class="b3" @click="index(2)">
+				<img src="static/sanshengsanshi/image/gift.png" />
+				<img v-show="nav == 2" src="static/sanshengsanshi/image/gift-h.png" />
+			</a>
+			<a href="#/openservice" class="b4 kaifu_btn" @click="index(3)">
+				<img src="static/sanshengsanshi/image/openservice.png" />
+				<img v-show="nav == 3" src="static/sanshengsanshi/image/openservice-h.png" />
+			</a>
+			<a href="#/kefu" class="b5" @click="index(4)">
+				<img src="static/sanshengsanshi/image/kefu.png" />
+				<img v-show="nav == 4" src="static/sanshengsanshi/image/kefu-h.png" />
+			</a>
+		</div>
+	</div>
+	<script type="text/javascript" src="static/sanshengsanshi/js/TouchSlide.1.1.js"></script>
+	<script type="text/javascript" src="static/sanshengsanshi/js/game_common.js"></script>
+	<!-- <script type="text/javascript">
+		// TAB切换
+		$(".news-tab li").bind('touchstart mousedown', function () {
+			var index = $(this).index();
+			$('.news-con .news-c').eq(index).show().siblings().hide();
+			$(this).addClass('active').siblings().removeClass('active');
+			return false;
+		});
+		$(".news-tab li").eq(0).addClass('active');
+		$(".news-con .news-c").eq(0).show();
+		// 职业
+		TouchSlide({ slideCell: "#role", titCell: ".hd", mainCell: ".bd", autoPage: true });
+		/*getOpenInfo('qyjios', '#openinfo');*/
+  </script> -->
+	<!-- <script type="text/javascript" src="static/js/index.js"></script> -->
+</body>
+
+</html>
