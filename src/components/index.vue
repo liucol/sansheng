@@ -1,230 +1,201 @@
 <template>
-  <div class="wrap">
-    <a :href="game.DownPath" @click = "Down()" class="get_down down_url">立即下载</a>
-    <div class="info-opens">
-      <span>开服公告：</span>
-      <ul id="openinfo">
-          <li class="ro">{{recentos.Description}} {{recentos.year}}-{{recentos.time1}} {{recentos.time2}}开服</li>
-      </ul>
-    </div>
-    <div class="newsbox">
-      <ul class="news-tab">
-        <!--<li>最新-->
-          <!--<div class="__data__" data_id="__data__[15611]" page="article" postfix="category_12296" style="display: none; ">-->
-            <!--<div></div>-->
-            <!--<span>最新</span>-->
-          <!--</div>-->
-        <!--</li>-->
-        <li
-            v-for="(list,index) in Tabtilte"
-            @click = "Tab(index)"
-            :class="{'active': Tabindex === index }"
-        >{{list}}
-          <div class="__data__" data_id="__data__[15614]" page="article" postfix="category_12296" style="display: none; ">
-            <div></div>
-            <span>{{list}}</span>
-          </div>
-        </li>
-      </ul>
-      <div class="news-con">
-        <ul v-show="Tabindex == 0">
-          <li class="news_li"
-              v-for="(list,index) in handleinfolist"
-          >
-            <em>{{list.Tag}}</em>
-            <span>{{list.Addtime}}</span>
-            <a :href="'#/new?id='+list.Id"  @click="indexnv(1)">【最新】{{list.Title}}</a>
-          </li>
-          <li class="more_li">
-            <a href="#/notice" @click="indexnv(1)">查看更多>></a>
-          </li>
-        </ul>
-        <ul v-show="Tabindex == 1">
-          <li class="news_li"
-              v-for="(list,index) in noticelist7"
-          >
-            <em>公告</em>
-            <span>{{list.Addtime}}</span>
-            <a :href="'#/new?id='+list.Id"  @click="indexnv(1)">【公告】{{list.Title}}</a>
-          </li>
-          <li class="more_li">
-            <a href="#/notice" @click="indexnv(1)">查看更多>></a>
-          </li>
-        </ul>
-        <ul v-show="Tabindex == 2">
-          <li class="news_li"
-              v-for="(list,index) in activitylist7"
-          >
-            <em>活动</em>
-            <span>{{list.Addtime}}</span>
-            <a :href="'#/new?id='+list.Id" @click="indexnv(1)">【活动】{{list.Title}}</a>
-          </li>
-          <li class="more_li">
-            <a href="#/activity" @click="indexnv(1)">查看更多>></a>
-          </li>
-        </ul>
-        <!-- <ul v-show="Tabindex == 2">
-          <li class="news_li" 
-              v-for="(list,index) in openserver7"
-          >
-            <em>开服</em>
-            <span>{{list.Addtime}}</span>
-            <a :href="'#/new?id='+list.Id" @click="indexnv(1)">【开服】{{list.Title}}</a>
-          </li>
-          <li class="more_li">
-            <a href="#/openserviceinfo" @click="indexnv(1)">查看更多>></a>
-          </li>
-        </ul> -->
-        <ul v-show="Tabindex == 3">
-          <li class="news_li" 
-              v-for="(list,index) in suit7"
-          >
-            <em>合服</em>
-            <span>{{list.Addtime}}</span>
-            <a :href="'#/new?id='+list.Id" @click="indexnv(1)">【合服】{{list.Title}}</a>
-          </li>
-          <li class="more_li">
-            <a href="#/suit" @click="indexnv(1)">查看更多>></a>
-          </li>
-        </ul>
-        <ul v-show="Tabindex == 4">
-          <li class="news_li"
-              v-for="(list,index) in strategy7"
-          >
-            <em>游戏</em>
-            <span>{{list.Addtime}}</span>       
-            <a :href="'#/new?id='+list.Id" @click="indexnv(1)">【攻略】{{list.Title}}</a>
-          </li>
-          <li class="more_li">
-            <a href="#/gamestrategy" @click="indexnv(1)">查看更多>></a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div id="role" class="role">
-      <p class="role_tit"></p>
-      <div class="role_txt">
-        <a href="javascript:void(0)" class="btn prev"></a>
-        <a href="javascript:void(0)" class="btn next"></a>
-        <ul class="bd">
-          <li>
-            <img src="static/sanshengsanshi/image/role3.jpg" width="100%" />
-          </li>
-          <!-- <li><img src="https://static.9377.cn/images/qyjaz_m/role4.jpg?20180509195512" width="100%" /></li> -->
-          <li>
-            <img src="static/sanshengsanshi/image/role1.jpg" width="100%" />
-          </li>
-          <!-- <li><img src="https://static.9377.cn/images/qyjaz_m/role2.jpg?20180509195512" width="100%" /></li> -->
-        </ul>
-        <ul class="hd"></ul>
-      </div>
-    </div>
-  </div>
+        <div>
+                <!--新闻资讯-->
+                 <div class="shop" id="news">
+                     <!-- <h1 class="title"><img src="img/title-1.png" alt=""></h1> -->
+                     <!--轮播-->
+                     <div class="swiper-container slides">
+                         <div class="swiper-wrapper">
+                             <div class="swiper-slide">
+                                 <a href=""><img src="img/newsslide1.jpg" alt="" /></a>
+                             </div>
+                             <div class="swiper-slide">
+                                 <a href=""><img src="img/newsslide2.jpg" alt="" /></a>
+                             </div>
+                             <div class="swiper-slide">
+                                 <a href=""><img src="img/newsslide3.jpg" alt="" /></a>
+                             </div>
+                             <div class="swiper-slide">
+                                 <a href=""><img src="img/newsslide4.jpg" alt="" /></a>
+                             </div>
+                         </div>
+                         <div class="swiper-pagination slides-pagination"></div>
+                     </div>
+                     <!--tab切换-->
+                     <div class="tab">
+                         <div class="tabset1 pws_tabs_list">
+                             <div data-pws-tab="tab1" data-pws-tab-name="最新" class="pws_hide pws_tab_single pws_show" data-pws-tab-id="1">
+                                 <div class="tab_list ">
+                                     <ul>
+                                         <li
+                                            v-for="(list,index) in handleinfolist7"
+                                         >
+                                             <a :href="'#/infocontent?id='+list.Id">
+                                                 <div class="tab_icon">[{{list.Tag}}]</div>
+                                                 <div class="tab_title">{{list.Title}}</div>
+                                                 <div class="tab_date">【{{list.Addtime}}】</div>
+                                             </a>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                             <div data-pws-tab="tab2" data-pws-tab-name="公告" class="pws_hide pws_tab_single" data-pws-tab-id="2">
+                                 <div class="tab_list ">
+                                     <ul>
+                                         <li
+                                             v-for="(list,index) in noticelist7"
+                                         >
+                                             <a :href="'#/infocontent?id='+list.Id">
+                                                 <div class="tab_icon">[公告]</div>
+                                                 <div class="tab_title">{{list.Title}}</div>
+                                                 <div class="tab_date">【{{list.Addtime}}】</div>
+                                             </a>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                             <div data-pws-tab="tab3" data-pws-tab-name="活動" class="pws_hide pws_tab_single" data-pws-tab-id="3">
+                                 <div class="tab_list ">
+                                     <ul>
+                                         <li
+                                            v-for="(list,index) in activitylist7"
+                                         >
+                                             <a :href="'#/infocontent?id='+list.Id">
+                                                 <div class="tab_icon">[活動]</div>
+                                                 <div class="tab_title">{{list.Title}}</div>
+                                                 <div class="tab_date">【{{list.Addtime}}】</div>
+                                             </a>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                             <div data-pws-tab="tab4" data-pws-tab-name="合服" class="pws_hide pws_tab_single" data-pws-tab-id="4">
+                                 <div class="tab_list ">
+                                     <ul>
+                                         <li
+                                            v-for="(list,index) in suit7"
+                                         >
+                                             <a :href="'#/infocontent?id='+list.Id">
+                                                 <div class="tab_icon">[合服]</div>
+                                                 <div class="tab_title">{{list.Title}}</div>
+                                                 <div class="tab_date">【{{list.Addtime}}】</div>
+                                             </a>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                             <div data-pws-tab="tab5" data-pws-tab-name="攻略" class="pws_hide pws_tab_single" data-pws-tab-id="5">
+                                 <div class="tab_list ">
+                                     <ul>
+                                         <li
+                                         v-for="(list,index) in strategy7"
+                                         >
+                                             <a :href="'#/infocontent?id='+list.Id">
+                                                 <div class="tab_icon">[攻略]</div>
+                                                 <div class="tab_title">{{list.Title}}</div>
+                                                 <div class="tab_date">【{{list.Addtime}}】</div>
+                                             </a>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
+                         <a href="#/infolist" class="btn-more">+</a>
+                     </div>
+                    </div>
+         
+                 <!--角色展示-->
+                 <div id="role" class="role">
+                     <h1 class="title"><img src="img/title-2.png" alt=""></h1>
+                     <div class="role-content">
+                         <ul class="role-carousel">
+                             <li class="role-item">
+                                 <!-- <p class="role-word"><img src="img/role-word-1.png" alt=""></p> -->
+                                 <div class="role-pic"><img src="img/role1.png" alt=""></div>
+                             </li>
+                             <li class="role-item">
+                                 <!-- <p class="role-word"><img src="img/role-word-2.png" alt=""></p> -->
+                                 <div class="role-pic"><img src="img/role2.png" alt=""></div>
+                             </li>
+                             <li class="role-item">
+                                 <!-- <p class="role-word"><img src="img/role-word-3.png" alt=""></p> -->
+                                 <div class="role-pic"><img src="img/role3.png" alt=""></div>
+                             </li>
+                             <li class="role-item">
+                                 <!-- <p class="role-word"><img src="img/role-word-4.png" alt=""></p> -->
+                                 <div class="role-pic"><img src="img/role4.png" alt=""></div>
+                             </li>
+                         </ul>
+                         <ul class="role-index"></ul>
+                         <div class="role-carousel-prev"></div>
+                         <div class="role-carousel-next"></div>
+                     </div>
+                    </div>
+         
+                 <!--游戏特色section-->
+                 <div id="feature" class="feature">
+                     <h1 class="title"><img src="img/title-3.png" alt=""></h1>
+                     <div class="swiper-container features">
+                         <div class="swiper-wrapper">
+                             <div class="swiper-slide">
+                                 <a href="javascript:void (0);"><img src="img/fpic1.jpg" alt="" /></a>
+                             </div>
+                             <div class="swiper-slide">
+                                 <a href="javascript:void (0);"><img src="img/fpic2.jpg" alt="" /></a>
+                             </div>
+                             <div class="swiper-slide">
+                                 <a href="javascript:void (0);"><img src="img/fpic3.jpg" alt="" /></a>
+                             </div>
+                             <!-- <div class="swiper-slide">
+                                 <a href="javascript:void (0);"><img src="img/feature-pic-4.jpg" alt="" /></a>
+                             </div>
+                             <div class="swiper-slide">
+                                 <a href="javascript:void (0);"><img src="img/feature-pic-5.jpg" alt="" /></a>
+                             </div> -->
+                         </div>
+                         <!-- <div class="swiper-pagination features-pagination"></div> -->
+                          <div class="swiper-button-prev features-button-prev"></div>
+                          <div class="swiper-button-next features-button-next"></div>
+                     </div>
+                    </div>
+             </div>
 </template>
 
 
 <script>
-  export default {
-    name: 'index',
-    props: {
-      game:{
-        required: true
-      },
-      recentos:{
-        required: true
-      },
-      handleinfolist:{
-        required: true
-      },
-      noticelist:{
-        required: true
-      },
-      activitylist:{
-        required: true
-      },
-      suit:{
-        required: true
-      },
-      openserver:{
-        required: true
-      },
-      strategy:{
-        required: true
-      },
-      noticelist7:{
-        required: true
-      },
-      activitylist7:{
-        required: true
-      },
-      suit7:{
-        required: true
-      },
-      openserver7:{
-        required: true
-      },
-      strategy7:{
-        required: true
-      }
-    },
-    data () {
-      return {
-        Tabtilte:["最新","公告","活动","合服","攻略"],
-        Tabindex: 0,
-        newnotic: null
-      }
-    },
-    created(){
-    },
-    methods: {
-      Tab(index){
-          this.Tabindex = index
-      },
-      touchslide(){
-        window.TouchSlide({ slideCell: "#role", titCell: ".hd", mainCell: ".bd", autoPage: true });
-      },
-      Down(){
-        this.$parent.Down()
-      },
-      indexnv(num){
-        this.$emit('my-index',num)
-      }
-    },
-    mounted() {
-      this.touchslide()
+    import axios from 'axios'
+    import url from '../api/index.js'
+
+    export default {
+        name: 'index',
+        props: {
+            handleinfolist7: { //所有资讯
+                required: true
+            },
+            noticelist7: {
+                required: true
+            },
+            activitylist7: {
+                required: true
+            },
+            suit7: {
+                required: true
+            },
+            openserver7: {
+                required: true
+            },
+            strategy7: {
+                required: true
+            }
+        },
+        data() {
+            return {}
+        },
+        created() {},
+        methods: {}
     }
-  }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-    .info-opens  span{
-      display: inline-block;
-      height: .55rem;
-      line-height: .55rem;
-      vertical-align: top;
-    }
-    #openinfo li{
-      float: left;
-    }
+<style>
 
-    @keyframes kf-marque-animation{ 
-      0% { transform: translateX(100%); } 
-      100% { transform: translateX(-100%); } 
-    }
-    #openinfo{
-        display: inline-block; 
-        width: 4.3rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: clip;
-        position: relative;
-    }
-    .ro{
-        display: inline-block;
-        position: relative;
-        padding-right: 0px;
-        animation: kf-marque-animation 10s linear infinite;
-        white-space: nowrap;
-    }
 </style>

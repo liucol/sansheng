@@ -1,0 +1,6 @@
+.content-main-list{
+    display: none;
+}
+.infolist-wp .active{
+    display: block;
+}
